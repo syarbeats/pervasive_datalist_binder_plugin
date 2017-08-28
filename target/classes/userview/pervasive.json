@@ -1,0 +1,87 @@
+[{
+    title : '@@datalist.jdbcDataListBinder.config@@',
+    properties : [{
+        name : 'jdbcDatasource',
+        label : '@@datalist.jdbcDataListBinder.datasource@@',
+        description : '@@datalist.jdbcDataListBinder.datasource.desc@@',
+        type : 'selectbox',
+        options : [{
+            value : 'custom',
+            label : '@@datalist.jdbcDataListBinder.customDatasource@@'
+        },{
+            value : 'default',
+            label : '@@datalist.jdbcDataListBinder.defaultDatasource@@'
+        }],
+        value : 'custom'
+    },{
+        name : 'jdbcDriver',
+        label : '@@datalist.jdbcDataListBinder.driver@@',
+        description : '@@datalist.jdbcDataListBinder.driver.desc@@',
+        type : 'textfield',
+        value : 'com.pervasive.jdbc.v2.Driver
+',
+        control_field: 'jdbcDatasource',
+        control_value: 'custom',
+        control_use_regex: 'false',
+        required : 'true'
+    },{
+        name : 'jdbcUrl',
+        label : '@@datalist.jdbcDataListBinder.url@@',
+        type : 'textfield',
+        value : 'jdbc:pervasive://localhost:1583/poc?characterEncoding=UTF8',
+        control_field: 'jdbcDatasource',
+        control_value: 'custom',
+        control_use_regex: 'false',
+        required : 'true'
+    },{
+        name : 'jdbcUser',
+        label : '@@datalist.jdbcDataListBinder.username@@',
+        type : 'textfield',
+        control_field: 'jdbcDatasource',
+        control_value: 'custom',
+        control_use_regex: 'false',
+        value : 'root',
+        required : 'true'
+    },{
+        name : 'jdbcPassword',
+        label : '@@datalist.jdbcDataListBinder.password@@',
+        type : 'password',
+        control_field: 'jdbcDatasource',
+        control_value: 'custom',
+        control_use_regex: 'false',
+        value : ''
+    },{
+        name : 'sql',
+        label : '@@datalist.jdbcDataListBinder.query.select@@',
+        type : 'codeeditor',
+        mode : 'sql',
+        value : 'select * from "INMAST"',
+        required : 'true'
+    },{
+        name : 'primaryKey',
+        label : '@@datalist.jdbcDataListBinder.query.primaryKey@@',
+        type : 'textfield',
+        value : 'Itemkey',
+        required : 'true'
+    },{
+        name : 'optimisePaging',
+        label : '@@datalist.jdbcDataListBinder.optimisePaging@@',
+        description : '@@datalist.jdbcDataListBinder.optimisePaging.desc@@',
+        type : 'checkbox',
+        options : [
+            {
+                value : 'true',
+                label : ''
+            }
+        ]
+    }],
+    buttons : [{
+        name : 'testConnection',    
+        label : '@@datalist.jdbcDataListBinder.testConnection@@',
+        ajax_url : '[CONTEXT_PATH]/web/json/app[APP_PATH]/plugin/org.joget.plugin.enterprise.JdbcDataListBinder/service?action=testConnection',
+        fields : ['jdbcDriver', 'jdbcUrl', 'jdbcUser', 'jdbcPassword'],
+        control_field: 'jdbcDatasource',
+        control_value: 'custom',
+        control_use_regex: 'false'
+    }]
+}]
